@@ -5,8 +5,10 @@ import {COLORS, scale} from '../assets/theme/theme';
 import {fetchMovieList} from '../helper/MovieDetailList';
 import {setMovieList} from '../utils/redux/store/dataSlice';
 import MovieListItems from './MovieListItems';
+import {useNavigation} from '@react-navigation/native';
 
-const MovieList = ({navigation}) => {
+const MovieList = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const {isMovieList} = useSelector(state => state.data);
 
@@ -20,16 +22,18 @@ const MovieList = ({navigation}) => {
     dispatch(setMovieList(data?.body));
   };
 
-  // handle onPress of movie Item
-  const handlePress = movie => {};
+  // handle onPress of selected movie Item
+  const handlePress = movie => {
+    navigation.navigate('DetailScreen', {selectedItem: movie});
+  };
 
   // renderItem of movie list
-  const renderMovieItem = item => {
+  const renderMovieItem = ({item}) => {
     return <MovieListItems item={item} onPress={handlePress} />;
   };
 
   return (
-    <View style={{}}>
+    <View style={styles.flatListMainView}>
       <FlatList
         data={isMovieList}
         keyExtractor={item => item?.id.toString()}
@@ -45,7 +49,8 @@ const MovieList = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {height: '100%'},
+  flatListMainView: {backgroundColor: COLORS.white, paddingBottom: scale(20)},
+  container: {height: '89%'},
   errorContainer: {
     // flex: 1,
     justifyContent: 'center',

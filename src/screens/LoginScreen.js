@@ -76,8 +76,11 @@ const LoginScreen = ({navigation}) => {
         <Loader />
       ) : (
         <>
-          <Text style={styles.title}>Login</Text>
+          <View style={styles.titleView}>
+            <Text style={styles.title}>Login</Text>
+          </View>
           <Input
+            title={'Email'}
             value={email}
             onChangeText={handleEmailChange}
             placeholder="Email"
@@ -85,6 +88,7 @@ const LoginScreen = ({navigation}) => {
             errorMessage={emailError}
           />
           <Input
+            title={'Password'}
             value={password}
             onChangeText={handlePasswordChange}
             placeholder="Password"
@@ -107,17 +111,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  titleView: {marginBottom: verticalScale(50)},
   title: {
     fontFamily: 'Poppins-Regular',
     fontSize: scale(24),
     fontWeight: 'bold',
-    marginBottom: verticalScale(32),
     color: COLORS.gray,
   },
   button: {
-    backgroundColor: COLORS.blueGray,
+    backgroundColor: COLORS.lightGreen,
     padding: scale(12),
-    borderRadius: 5,
+    borderRadius: 10,
     width: '80%',
     alignItems: 'center',
     marginTop: verticalScale(16),

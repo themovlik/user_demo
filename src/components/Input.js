@@ -3,6 +3,7 @@ import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {COLORS, scale, verticalScale} from '../assets/theme/theme';
 
 const Input = ({
+  title,
   placeholder,
   secureTextEntry,
   value,
@@ -13,6 +14,9 @@ const Input = ({
   // Input Component
   return (
     <View style={styles.inputContainer}>
+      <View style={styles.inputTitleView}>
+        <Text style={styles.inputTitle}>{title}</Text>
+      </View>
       <TextInput
         style={styles.input}
         placeholder={placeholder}
@@ -36,9 +40,15 @@ const styles = StyleSheet.create({
     width: '80%',
     marginBottom: verticalScale(12),
   },
+  inputTitleView: {marginBottom: scale(5)},
+  inputTitle: {
+    fontFamily: 'Poppins-Regular',
+    color: COLORS.textGray,
+    fontSize: scale(14),
+  },
   input: {
     fontFamily: 'Poppins-Regular',
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: COLORS.lightgray,
     borderRadius: 5,
     padding: scale(8),

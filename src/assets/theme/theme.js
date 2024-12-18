@@ -12,14 +12,14 @@ export const verticalScale = size => (height / guidelineBaseHeight) * size;
 export const COLORS = {
   white: '#FFFFFF',
   lightGreen: '#C7F6C7',
-  lightGreen60: '#25db9460',
   black: '#000000',
   gray: '#25282f',
   lightgray: '#CCCCCC',
   red: '#FF0000',
-  lightRed: '#FFD6D7',
-  skyBlue: '#edf7fc',
   blueGray: '#E9F2FF',
+  secondGray: '#565656',
+  thirdGray: '#D8D8D8',
+  textGray: '#8E8E8E',
 };
 
 export const SIZES = {
