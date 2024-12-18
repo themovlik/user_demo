@@ -8,6 +8,8 @@ const guidelineBaseHeight = 680;
 export const scale = size => (width / guidelineBaseWidth) * size;
 export const verticalScale = size => (height / guidelineBaseHeight) * size;
 
+export const hitSlop = {bottom: 10, top: 10, left: 10, right: 10};
+
 // global color
 export const COLORS = {
   white: '#FFFFFF',

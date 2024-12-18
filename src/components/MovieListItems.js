@@ -1,8 +1,7 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {COLORS, scale, verticalScale} from '../assets/theme/theme';
 import filledStar from '../assets/icon/star_fill.png';
-import movie from '../assets/icon/movie.png';
+import {COLORS, scale, verticalScale} from '../assets/theme/theme';
 
 const MovieListItems = ({item, onPress}) => {
   return (
@@ -11,10 +10,7 @@ const MovieListItems = ({item, onPress}) => {
       onPress={() => onPress(item)}
       style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image
-          source={{uri: 'https://fakeimg.pl/300/00000'}}
-          style={styles.movieIcon}
-        />
+        <Image source={{uri: item?.poste}} style={styles.movieIcon} />
       </View>
       <View style={styles.detailsContainer}>
         <View>
@@ -62,8 +58,10 @@ const styles = StyleSheet.create({
     width: verticalScale(75),
     height: verticalScale(100),
     borderRadius: verticalScale(8),
-    // backgroundColor: 'gray',
+    // backgroundColor: COLORS.thirdGray,
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: COLORS.textGray,
   },
   movieIcon: {height: '100%', width: '100%', resizeMode: 'cover'},
 
@@ -92,6 +90,7 @@ const styles = StyleSheet.create({
   },
   ratingView: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   ratingTextStyle: {
     fontSize: scale(14),

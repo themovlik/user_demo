@@ -1,21 +1,40 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {COLORS, scale, SIZES, verticalScale} from '../assets/theme/theme';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  COLORS,
+  hitSlop,
+  scale,
+  SIZES,
+  verticalScale,
+} from '../assets/theme/theme';
 import movie from '../assets/icon/movie.png';
 import filledStar from '../assets/icon/star_fill.png';
+import backIcon from '../assets/icon/backIcon.png';
 
-const DetailScreen = ({route}) => {
+const DetailScreen = ({navigation, route}) => {
   const {selectedItem} = route.params;
+
+  const onPressGoBack = () => {
+    navigation.goBack();
+  };
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={movie} resizeMode="contain" style={styles.movieIcon} />
+        <Image source={movie} style={styles.movieIcon} />
       </View>
+      <TouchableOpacity
+        hitSlop={hitSlop}
+        onPress={() => {
+          onPressGoBack();
+        }}
+        style={styles.blackIcon}>
+        <Image source={backIcon} style={styles.movieIcon} />
+      </TouchableOpacity>
       <View style={styles.mainView}>
         <View style={styles.detailView}>
           <View style={styles.secondImageContainer}>
             <Image
-              source={movie}
+              source={{uri: selectedItem?.poste}}
               resizeMode="contain"
               style={styles.movieIcon}
             />
@@ -52,7 +71,23 @@ const DetailScreen = ({route}) => {
         </View>
         <View style={styles.detailContainer}>
           <View>
-            <Text style={styles.detailTe}>{selectedItem?.plot}</Text>
+            <Text
+              style={
+                styles.titleText
+              }>{`Director : ${selectedItem?.director}`}</Text>
+          </View>
+          <View>
+            <Text style={styles.detailText}>{selectedItem?.plot}</Text>
+          </View>
+          <View style={styles.castView}>
+            <Text style={styles.titleText}>Cast</Text>
+          </View>
+          <View style={styles.actorsView}>
+            {selectedItem?.actors?.map(i => (
+              <View style={styles.castTextView}>
+                <Text style={styles.detailText}>{i}</Text>
+              </View>
+            ))}
           </View>
         </View>
       </View>
@@ -67,6 +102,15 @@ const styles = StyleSheet.create({
     height: SIZES.width / 1,
     // borderRadius: verticalScale(8),
     overflow: 'hidden',
+  },
+  blackIcon: {
+    width: scale(22),
+    height: scale(22),
+    // bottom: 40,
+    overflow: 'hidden',
+    position: 'absolute',
+    top: scale(50),
+    left: scale(20),
   },
   movieIcon: {height: '100%', width: '100%', resizeMode: 'cover'},
   mainView: {
@@ -95,6 +139,8 @@ const styles = StyleSheet.create({
     height: SIZES.width / 2,
     borderRadius: verticalScale(8),
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: COLORS.textGray,
   },
   detailsContainer: {
     flexShrink: 1,
@@ -146,7 +192,7 @@ const styles = StyleSheet.create({
     padding: scale(16),
     borderRadius: 8,
     marginHorizontal: 16,
-    marginVertical: 8,
+    marginVertical: scale(20),
 
     shadowColor: '#00000',
     shadowOffset: {width: 0, height: 2},
@@ -155,5 +201,29 @@ const styles = StyleSheet.create({
     elevation: 3,
     paddingHorizontal: '15@s',
   },
+  castView: {marginTop: scale(15)},
+  titleText: {
+    fontSize: scale(14),
+    marginBottom: verticalScale(8),
+    fontFamily: 'Poppins-Bold',
+    color: COLORS.black,
+  },
+  castTextView: {
+    padding: scale(8),
+    borderWidth: 1,
+    borderColor: COLORS.textGray,
+    // backgroundColor: COLORS.lightGreen,
+    borderRadius: scale(8),
+    marginHorizontal: 5,
+    marginVertical: 5,
+    alignItems: 'center',
+  },
+  detailText: {
+    fontSize: scale(13),
+    marginBottom: verticalScale(8),
+    fontFamily: 'Poppins-Regular',
+    color: COLORS.black,
+  },
+  actorsView: {flexDirection: 'row', flexWrap: 'wrap'},
 });
 export default DetailScreen;
