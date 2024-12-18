@@ -20,6 +20,7 @@ export const COLORS = {
   secondGray: '#565656',
   thirdGray: '#D8D8D8',
   textGray: '#8E8E8E',
+  yellow: '#FFFACD',
 };
 
 export const SIZES = {

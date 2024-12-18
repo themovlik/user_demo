@@ -11,7 +11,10 @@ const MovieListItems = ({item, onPress}) => {
       onPress={() => onPress(item)}
       style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={movie} resizeMode="contain" style={styles.movieIcon} />
+        <Image
+          source={{uri: 'https://fakeimg.pl/300/00000'}}
+          style={styles.movieIcon}
+        />
       </View>
       <View style={styles.detailsContainer}>
         <View>
@@ -23,7 +26,7 @@ const MovieListItems = ({item, onPress}) => {
 
         <View style={styles.ratingView}>
           <View>
-            <Text style={styles.genreName}>{item?.rating}</Text>
+            <Text style={styles.ratingTextStyle}>{item?.rating}</Text>
           </View>
           <View style={styles.ratingImage}>
             <Image
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
     width: verticalScale(75),
     height: verticalScale(100),
     borderRadius: verticalScale(8),
-    backgroundColor: 'gray',
+    // backgroundColor: 'gray',
     overflow: 'hidden',
   },
   movieIcon: {height: '100%', width: '100%', resizeMode: 'cover'},
@@ -89,6 +92,12 @@ const styles = StyleSheet.create({
   },
   ratingView: {
     flexDirection: 'row',
+  },
+  ratingTextStyle: {
+    fontSize: scale(14),
+    fontFamily: 'Poppins-Regular',
+    fontWeight: '500',
+    color: COLORS.black,
   },
   ratingImage: {
     marginStart: 4,

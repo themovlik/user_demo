@@ -39,7 +39,6 @@ const MovieList = () => {
         keyExtractor={item => item?.id.toString()}
         renderItem={renderMovieItem}
         style={styles.container}
-        //   onEndReached={onEndReached || handleEndReached}
         onEndReachedThreshold={0.5}
         // ListFooterComponent={!true && <Loader size="small" />}
         showsVerticalScrollIndicator={false}
