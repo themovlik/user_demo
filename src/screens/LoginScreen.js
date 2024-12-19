@@ -1,14 +1,14 @@
-import React, {memo, useEffect, useState} from 'react';
-import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, { memo, useEffect, useState } from 'react';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Input from '../components/Input';
 import Loader from '../components/Loader';
 import {
   getAsyncStorageItem,
   setAsyncStorageItem,
 } from '../utils/localStore/localStorage';
-import {COLORS, scale, verticalScale} from '../assets/theme/theme';
+import { COLORS, scale, verticalScale } from '../assets/theme/theme';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
   // loginState
   const [loginState, setLoginState] = useState({
     email: 'demo@gmail.com',
@@ -25,7 +25,7 @@ const LoginScreen = ({navigation}) => {
       if (storedEmail) {
         navigation.replace('MainScreen');
       } else {
-        setLoginState({...loginState, loading: false});
+        setLoginState({ ...loginState, loading: false });
       }
     };
     fetchCredentials();
@@ -33,24 +33,22 @@ const LoginScreen = ({navigation}) => {
 
   // handle OnChangeEmail Input
   const handleEmailChange = text => {
-    setLoginState({...loginState, email: text, emailError: null});
+    setLoginState({ ...loginState, email: text, emailError: null });
   };
 
   // handle OnChangePassword Input
   const handlePasswordChange = text => {
-    setLoginState({...loginState, password: text, passwordError: null});
+    setLoginState({ ...loginState, password: text, passwordError: null });
   };
 
   // handle Login Button
   const handleLoginPress = () => {
-    const {email, password} = loginState;
+    const { email, password } = loginState;
     const isValid = {
       email: email.toLowerCase() === 'demo@gmail.com',
       password: password === '123456',
     };
     if (isValid.email && isValid.password) {
-      Alert.alert('Login successful');
-
       navigation.replace('MainScreen');
       setAsyncStorageItem('USERINFO', email);
       setLoginState({
@@ -68,7 +66,7 @@ const LoginScreen = ({navigation}) => {
     }
   };
 
-  const {email, password, emailError, passwordError} = loginState;
+  const { email, password, emailError, passwordError } = loginState;
 
   return (
     <View style={styles.container}>
@@ -111,7 +109,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  titleView: {marginBottom: verticalScale(50)},
+  titleView: { marginBottom: verticalScale(50) },
   title: {
     fontFamily: 'Poppins-Regular',
     fontSize: scale(24),

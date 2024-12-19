@@ -1,5 +1,5 @@
-import {Dimensions} from 'react-native';
-const {width, height} = Dimensions.get('window');
+import { Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 // height and width scale counting
 const guidelineBaseWidth = 350;
@@ -8,7 +8,7 @@ const guidelineBaseHeight = 680;
 export const scale = size => (width / guidelineBaseWidth) * size;
 export const verticalScale = size => (height / guidelineBaseHeight) * size;
 
-export const hitSlop = {bottom: 10, top: 10, left: 10, right: 10};
+export const hitSlop = { bottom: 10, top: 10, left: 10, right: 10 };
 
 // global color
 export const COLORS = {
@@ -23,6 +23,7 @@ export const COLORS = {
   thirdGray: '#D8D8D8',
   textGray: '#8E8E8E',
   yellow: '#FFFACD',
+  transparentBlack: 'rgba(1, 0, 0, 0.6)'
 };
 
 export const SIZES = {
@@ -49,6 +50,6 @@ export const SIZES = {
   height,
 };
 
-const appTheme = {COLORS, SIZES};
+const appTheme = { COLORS, SIZES };
 
 export default appTheme;

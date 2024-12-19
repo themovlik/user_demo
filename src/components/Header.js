@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {COLORS, scale} from '../assets/theme/theme';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { COLORS, scale } from '../assets/theme/theme';
 
 // Header Component
-const Header = ({title, isLogOut, onBackPress}) => {
+const Header = ({ title, isLogOut, onBackPress }) => {
   return (
-    <SafeAreaView style={{backgroundColor: COLORS.lightGreen, height: '11%'}}>
+    <SafeAreaView style={styles.headerContainer}>
       <View style={styles.header}>
         {onBackPress && (
           <TouchableOpacity style={styles.backButton} onPress={onBackPress}>
@@ -22,6 +22,11 @@ const Header = ({title, isLogOut, onBackPress}) => {
 };
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    backgroundColor: COLORS.lightGreen,
+    height: scale(45),
+    justifyContent: 'center',
+  },
   header: {
     backgroundColor: COLORS.lightGreen,
     flexDirection: 'row',
@@ -43,7 +48,7 @@ const styles = StyleSheet.create({
   backButtonText: {
     fontSize: scale(15),
     color: COLORS.red,
-    fontWeight: '500',
+    fontFamily: 'Poppins-Semibold',
   },
 });
 

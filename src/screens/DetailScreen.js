@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {
   COLORS,
   hitSlop,
@@ -11,12 +11,13 @@ import movie from '../assets/icon/movie.png';
 import filledStar from '../assets/icon/star_fill.png';
 import backIcon from '../assets/icon/backIcon.png';
 
-const DetailScreen = ({navigation, route}) => {
-  const {selectedItem} = route.params;
+const DetailScreen = ({ navigation, route }) => {
+  const { selectedItem } = route.params;
 
   const onPressGoBack = () => {
     navigation.goBack();
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -24,9 +25,7 @@ const DetailScreen = ({navigation, route}) => {
       </View>
       <TouchableOpacity
         hitSlop={hitSlop}
-        onPress={() => {
-          onPressGoBack();
-        }}
+        onPress={onPressGoBack}
         style={styles.blackIcon}>
         <Image source={backIcon} style={styles.movieIcon} />
       </TouchableOpacity>
@@ -34,7 +33,7 @@ const DetailScreen = ({navigation, route}) => {
         <View style={styles.detailView}>
           <View style={styles.secondImageContainer}>
             <Image
-              source={{uri: selectedItem?.poste}}
+              source={{ uri: selectedItem?.poster }}
               resizeMode="contain"
               style={styles.movieIcon}
             />
@@ -42,10 +41,7 @@ const DetailScreen = ({navigation, route}) => {
 
           <View style={styles.detailsContainer}>
             <View>
-              <Text
-                style={
-                  styles.name
-                }>{`${selectedItem?.title} (${selectedItem?.year})`}</Text>
+              <Text style={styles.name}>{`${selectedItem?.title} (${selectedItem?.year})`}</Text>
             </View>
             <View style={styles.genreView}>
               <Text style={styles.genreName}>
@@ -71,10 +67,7 @@ const DetailScreen = ({navigation, route}) => {
         </View>
         <View style={styles.detailContainer}>
           <View>
-            <Text
-              style={
-                styles.titleText
-              }>{`Director : ${selectedItem?.director}`}</Text>
+            <Text style={styles.titleText}>{`Director : ${selectedItem?.director}`}</Text>
           </View>
           <View>
             <Text style={styles.detailText}>{selectedItem?.plot}</Text>
@@ -85,7 +78,7 @@ const DetailScreen = ({navigation, route}) => {
           <View style={styles.actorsView}>
             {selectedItem?.actors?.map(i => (
               <View style={styles.castTextView}>
-                <Text style={styles.detailText}>{i}</Text>
+                <Text style={[styles.detailText, { marginBottom: 0 }]}>{i}</Text>
               </View>
             ))}
           </View>
@@ -96,23 +89,21 @@ const DetailScreen = ({navigation, route}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {backgroundColor: COLORS.white, flex: 1},
+  container: { backgroundColor: COLORS.white, flex: 1 },
   imageContainer: {
     width: SIZES.width,
     height: SIZES.width / 1,
-    // borderRadius: verticalScale(8),
     overflow: 'hidden',
   },
   blackIcon: {
     width: scale(22),
     height: scale(22),
-    // bottom: 40,
     overflow: 'hidden',
     position: 'absolute',
     top: scale(50),
     left: scale(20),
   },
-  movieIcon: {height: '100%', width: '100%', resizeMode: 'cover'},
+  movieIcon: { height: '100%', width: '100%', resizeMode: 'cover' },
   mainView: {
     position: 'absolute',
     padding: scale(10),
@@ -121,10 +112,9 @@ const styles = StyleSheet.create({
   },
   detailView: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(1, 0, 0, 0.6)',
+    backgroundColor: COLORS.transparentBlack,
     alignItems: 'center',
     padding: scale(10),
-
     borderRadius: verticalScale(10),
   },
   backImgContainer: {
@@ -148,7 +138,7 @@ const styles = StyleSheet.create({
     marginLeft: scale(10),
     marginVertical: 16,
   },
-  genreView: {flexDirection: 'row'},
+  genreView: { flexDirection: 'row' },
   name: {
     fontSize: scale(14),
     marginBottom: verticalScale(8),
@@ -171,7 +161,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     height: scale(30),
     width: scale(70),
-    // alignSelf: 'flex-end',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -188,20 +177,20 @@ const styles = StyleSheet.create({
     height: verticalScale(12),
   },
   detailContainer: {
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.white,
     padding: scale(16),
     borderRadius: 8,
     marginHorizontal: 16,
     marginVertical: scale(20),
 
-    shadowColor: '#00000',
-    shadowOffset: {width: 0, height: 2},
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 3,
     elevation: 3,
-    paddingHorizontal: '15@s',
+    paddingHorizontal: 15,
   },
-  castView: {marginTop: scale(15)},
+  castView: { marginTop: scale(15) },
   titleText: {
     fontSize: scale(14),
     marginBottom: verticalScale(8),
@@ -212,11 +201,11 @@ const styles = StyleSheet.create({
     padding: scale(8),
     borderWidth: 1,
     borderColor: COLORS.textGray,
-    // backgroundColor: COLORS.lightGreen,
     borderRadius: scale(8),
-    marginHorizontal: 5,
+    marginRight: 5,
     marginVertical: 5,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   detailText: {
     fontSize: scale(13),
@@ -224,6 +213,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     color: COLORS.black,
   },
-  actorsView: {flexDirection: 'row', flexWrap: 'wrap'},
+  actorsView: { flexDirection: 'row', flexWrap: 'wrap' },
 });
 export default DetailScreen;

@@ -1,14 +1,14 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Header from '../components/Header';
 import MovieList from '../components/MovieList';
-import {removeAsyncStorageItem} from '../utils/localStore/localStorage';
+import { removeAsyncStorageItem } from '../utils/localStore/localStorage';
 
-const MainScreen = ({navigation}) => {
+const MainScreen = ({ navigation }) => {
   return (
-    <View>
+    <>
       <Header
-        title="Movie List"
+        title="Movies List"
         isLogOut={true}
         onBackPress={() => {
           removeAsyncStorageItem('USERINFO');
@@ -16,7 +16,7 @@ const MainScreen = ({navigation}) => {
         }}
       />
       <MovieList />
-    </View>
+    </>
   );
 };
 
